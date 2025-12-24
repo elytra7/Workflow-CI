@@ -25,10 +25,8 @@ jobs:
       run: |
         pip install -r MLproject_folder/requirements.txt
 
-    - name: Run Training Script
+    - name: Run Training Script via MLflow
       run: |
-        cd MLproject_folder
-        python modelling_tuning.py
 
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4

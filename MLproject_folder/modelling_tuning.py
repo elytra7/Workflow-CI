@@ -11,21 +11,20 @@ import os
 EXPERIMENT_NAME = "Eksperimen_Kidney_Disease_Ardian"
 ARTIFACT_PATH = "model_artifacts"
 
-# Menggunakan path relatif terhadap file script ini
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_PATH = os.path.join(BASE_DIR, "kidney_disease_processed", "processed_data.csv")
 
 def load_data(path):
     print(f"Mencoba membaca dataset dari: {path}") 
     
-    # 1. Cek apakah file ada
+
     if not os.path.exists(path):
         raise FileNotFoundError(f"File dataset tidak ditemukan di: {path}")
     
     # 2. BACA FILE 
     df = pd.read_csv(path)
     
-    # 3. Pisahkan Fitur dan Target (Sesuaikan nama kolom target)
+    # 3. Pisahkan Fitur dan Target 
 
     X = df.drop(columns=['Dialysis_Needed'])
     y = df['Dialysis_Needed']
@@ -45,7 +44,6 @@ def main():
     X_train_resampled, y_train_resampled = smote.fit_resample(X_train, y_train)
 
     # 4. Setup MLflow Experiment
-   # mlflow.set_experiment(EXPERIMENT_NAME)
 
     with mlflow.start_run():
         print("Memulai Hyperparameter Tuning...")
