@@ -23,15 +23,15 @@ jobs:
 
     - name: Install Dependencies
       run: |
-        pip install -r MLProject/requirements.txt
+        pip install -r MLproject_folder/requirements.txt
 
     - name: Run Training Script
       run: |
-        cd MLProject
+        cd MLproject_folder
         python modelling_tuning.py
 
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
       with:
         name: model-result
-        path: MLProject/model_artifacts
+        path: MLproject_folder/model_artifacts
